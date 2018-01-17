@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import API from './../utils/API';
 
+
 class TodoInput extends Component {
 	constructor (props) {
 		super(props);
 
-		this.state = { text: "", dueDate: "" }
+		this.state = { tasks: [], text: "", dueDate: "" }
 
 		this.onInputChange = this.onInputChange.bind(this)
 	}
@@ -25,6 +26,10 @@ class TodoInput extends Component {
 		});
 	}
 
+	loadTasks = () => {
+
+	}
+
 	onFormSubmit = (event) => {
 		event.preventDefault();
 
@@ -33,11 +38,10 @@ class TodoInput extends Component {
 				task: this.state.text,
 				dueDate: this.state.dueDate
 			})
-			.then(res => console.log(res))
+			.then(res => this.forceUpdate() )
 			.catch(err => console.log(err))
 		}
-
-		this.setState ({ text: "" })
+		this.setState({ text: "", dueDate: ""});
 	}
 
 	render () {
