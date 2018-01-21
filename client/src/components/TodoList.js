@@ -3,7 +3,10 @@ import TodoListItems from './TodoListItems'
 import API from './../utils/API';
 import DeleteBtn from './DeleteBtn/DeleteBtn'
 
-class TodoList extends Component {
+class TodoList extends Component { 
+	state = {
+		completeClicked: false
+	}
 
 	//delete? edit?
 	deleteTask = (id) => {
@@ -13,9 +16,16 @@ class TodoList extends Component {
 			.catch(err => console.error(err))
 	}
 
+	editTask = (id) => {
+		console.log('HERE: ', !this.state.completeClicked)
+		API.editTask(id, {complete: !this.state.completeClicked})
+		//taskdata = object that was completed to true (hardcoded)
+			.then(res => this.props.loadTodos())
+			.catch(err => console.error(err))
+	}
 
 	render() {
-		console.log(this.props.todos)
+		console.log(this.state.completeClicked)
 		return (
 			<div>
 				{this.props.todos.map( task => {
@@ -24,7 +34,19 @@ class TodoList extends Component {
 							<h3>Task: {task.task}</h3>
 							<h3>Due: {task.dueDate}</h3>
 
-						<button onClick={() => this.deleteTask(task._id)}> Delete Me!!! </button>
+						<button onClick={() => this.deleteTask(task._id)}> Delete </button>
+						<button 
+						onClick={
+							() => {
+								{this.state.completeClicked? this.setState({completeClicked: false}) : this.setState({completeClicked: true})}
+								this.editTask(task._id, task.complete)
+							}
+						}
+
+							> 
+							Done!!! 
+						</button>
+						
 						</TodoListItems>
 					)
 				})}

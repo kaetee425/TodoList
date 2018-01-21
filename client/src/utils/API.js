@@ -19,5 +19,9 @@ export default {
 //delete
 	deleteTask: function(id) {
 		return axios.delete('/api/tasks/' + id)
+	},
+
+	editTask: function(id, taskdata) {
+		return axios.put('/api/tasks/' + id, taskdata)
 	}
 };
