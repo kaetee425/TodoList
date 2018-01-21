@@ -1,9 +1,9 @@
 import React from 'react'
 
 const DeleteBtn = props => (
-	<span className='deletebtn' {...props}>
+	<button className='deletebtn' {...props}>
 		x
-	</span>
+	</button>
 );
 
 export default DeleteBtn;

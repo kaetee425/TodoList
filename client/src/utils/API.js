@@ -18,6 +18,6 @@ export default {
 
 //delete
 	deleteTask: function(id) {
-		return axios.delete('/api/tasks' + id)
+		return axios.delete('/api/tasks/' + id)
 	}
 };
