@@ -6,7 +6,8 @@ require('./models/Todo.js')
 
 const app = express();
 
-const MONGODB_URI = keys.mongoURI || 'mongodb://localhost/TodoList'
+const MONGODB_URI = keys.mongoURI || 'mongodb://localhost/TodoList';
+// const MONGODB_URI = 'mongodb://localhost/TodoList';
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {

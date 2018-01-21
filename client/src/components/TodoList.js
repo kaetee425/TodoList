@@ -1,29 +1,31 @@
 import React, { Component } from 'react'
 import TodoListItems from './TodoListItems'
 import API from './../utils/API';
-import loadTasks from './../utils/loadTasks'
 
 class TodoList extends Component {
 
 	state = {
-		tasks: []
+		todos: []
+		//complete? not complete?
 	}
 
-	componentDidMount () {
-		this.loadTasks();
-	}
+	// componentDidMount () {
+	// 	this.loadTodos();
+	// }
 
-	loadTasks = () => {
-		API.getTasks()
-			.then(res => this.setState ({ tasks: res.data }))
-			.catch(err => console.log(err)) 
-	}
+	// loadTodos = () => {
+	// 	API.getTasks()
+	// 		.then(res => this.setState({ todos: res.data }))
+	// 		.catch(err => console.log(err))
+	// }
+
+	//delete? edit?
 
 	render() {
-		console.log(this.state.tasks)
+		console.log(this.state.todos)
 		return (
 			<div>
-				{this.state.tasks.map( task => {
+				{this.state.todos.map( task => {
 					return (
 						<TodoListItems key={task._id}>
 							<h3>Task: {task.task}</h3>

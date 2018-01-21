@@ -6,9 +6,20 @@ class TodoInput extends Component {
 	constructor (props) {
 		super(props);
 
-		this.state = { tasks: [], text: "", dueDate: "" }
+		this.state = { todos: [], text: "", dueDate: "" }
 
 		this.onInputChange = this.onInputChange.bind(this)
+		this.onDueDateChange = this.onDueDateChange.bind(this)
+	}
+
+	// componentDidMount() {
+	// 	this.loadTodos();
+	// }
+
+	loadTodos = () => {
+		API.getTasks()
+			.then(res => this.setState({ todos: res.data }))
+			.catch(err => console.log(err))
 	}
 
 	onDueDateChange = (event) => {
@@ -26,10 +37,6 @@ class TodoInput extends Component {
 		});
 	}
 
-	loadTasks = () => {
-
-	}
-
 	onFormSubmit = (event) => {
 		event.preventDefault();
 
@@ -38,10 +45,10 @@ class TodoInput extends Component {
 				task: this.state.text,
 				dueDate: this.state.dueDate
 			})
-			.then(res => this.forceUpdate() )
+			.then(res => this.loadTodos())
 			.catch(err => console.log(err))
 		}
-		this.setState({ text: "", dueDate: ""});
+		this.setState({ text: "", dueDate: ""})
 	}
 
 	render () {
@@ -49,7 +56,7 @@ class TodoInput extends Component {
 			<form onSubmit={this.onFormSubmit}>
 				<input placeholder='add a todo task' value={this.state.text} onChange={this.onInputChange}/>
 				<input type="date" value={this.state.dueDate} onChange={this.onDueDateChange}/>
-				<button type="submit">Submit Your Shit</button>
+				<button onClick={this.onFormSubmit}>Submit Your Shit</button>
 			</form>
 		);
 	}
