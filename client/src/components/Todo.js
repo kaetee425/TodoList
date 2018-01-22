@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import TodoInput from './TodoInput'
-import TodoList from './TodoList'
-// import TodoListItems from './TodoListItems'
+import TodoInput from './TodoInput/TodoInput'
+import TodoList from './TodoList/TodoList'
 import API from './../utils/API';
+import './Todo.css'
 
 class Todo extends Component {
 	state = {

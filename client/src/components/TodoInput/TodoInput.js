@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import API from './../utils/API';
+import './TodoInput.css'
+import API from '../../utils/API';
 
 
 class TodoInput extends Component {
@@ -46,6 +47,7 @@ class TodoInput extends Component {
 			<form onSubmit={this.props.onFormSubmit}>
 				<input placeholder='add a todo task' value={this.state.text} onChange={this.onInputChange}/>
 				<input type="date" value={this.state.dueDate} onChange={this.onDueDateChange}/>
+				
 				<button onClick={this.onFormSubmit}>Submit Your Shit</button>
 			</form>
 		);

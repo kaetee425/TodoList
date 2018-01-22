@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TodoListItems from './TodoListItems'
-import API from './../utils/API';
-import DeleteBtn from './DeleteBtn/DeleteBtn'
+import API from '../../utils/API';
+import DeleteBtn from '../DeleteBtn/DeleteBtn'
 
 class TodoList extends Component { 
 	state = {
