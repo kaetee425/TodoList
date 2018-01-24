@@ -16,6 +16,9 @@
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
-    "mongoose": "^4.13.9"
+    "moment": "^2.20.1",
+    "mongoose": "^4.13.9",
+    "react-awesome-countdowntimer": "^1.1.1",
+    "react-datetime": "^2.11.1"
   }
 }

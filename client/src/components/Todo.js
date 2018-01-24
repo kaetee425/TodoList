@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import TodoInput from './TodoInput/TodoInput'
 import TodoList from './TodoList/TodoList'
-import API from './../utils/API';
+import Countdown from './Timer/Timer'
+import API from './../utils/API'
 import './Todo.css'
 
 class Todo extends Component {
@@ -26,6 +27,8 @@ class Todo extends Component {
 		return (
 			<div>
 				<h1>Do your Shit!</h1>
+
+				<Countdown />
 				
 				<TodoInput potatoes={this.loadTodos}/>
 
