@@ -3,7 +3,7 @@ import './TodoInput.css'
 import API from '../../utils/API';
 
 import moment from 'moment'
-import Timer from 'react-awesome-countdowntimer'
+import CountdownTime from 'react-awesome-countdowntimer'
 import * as Datetime from 'react-datetime'
 import '../Timer/Timer.css'
 
@@ -62,7 +62,7 @@ class TodoInput extends Component {
 					<Datetime value={this.state.dueDate} onChange={this.onDueDateChange} />
 				</div>	
 
-				<Timer endDate={this.state.dueDate} />
+				<CountdownTime endDate={this.state.dueDate} />
 
 				<button onClick={this.onFormSubmit}>Submit Your Shit</button>
 			</form>

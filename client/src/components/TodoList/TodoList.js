@@ -4,12 +4,24 @@ import API from '../../utils/API';
 import DeleteBtn from '../DeleteBtn/DeleteBtn'
 
 import moment from 'moment'
-import Timer from 'react-awesome-countdowntimer'
+import CountdownTime from 'react-awesome-countdowntimer'
+import * as Datetime from 'react-datetime'
 
 class TodoList extends Component { 
 	state = {
 		completeClicked: false,
 		dueDate: moment()
+	}
+
+	onDueDateChange = (event) => {
+		// this.setState ({
+		// 	dueDate: event.target.value
+		// })
+		console.log('moment date: ', event._d)
+
+		this.setState({
+			dueDate: event._d,
+		})
 	}
 
 	//delete? edit?
@@ -28,7 +40,6 @@ class TodoList extends Component {
 			.catch(err => console.error(err))
 	}
 
-							// <Timer endDate={this.state.dueDate._d} />
 	render() {
 		console.log(this.state.completeClicked)
 		console.log('dueDate: ', this.state.dueDate._d)
@@ -38,8 +49,12 @@ class TodoList extends Component {
 					return (
 						<TodoListItems key={task._id}>
 							<h3>Task: {task.task}</h3>
-							<h3>Due: {task.dueDate} </h3>
+							<h3>Due: {task.dueDate} </h3>	
 
+						<h4> Time Remaining:
+							<CountdownTime endDate={this.state.dueDate._d} />
+						</h4>
+						
 						<button onClick={() => this.deleteTask(task._id)}> Delete </button>
 						<button 
 						onClick={

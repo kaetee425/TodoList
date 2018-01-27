@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import TodoInput from './TodoInput/TodoInput'
 import TodoList from './TodoList/TodoList'
-import Countdown from './Timer/Timer'
+// import Countdown from './Timer/Timer'
 import API from './../utils/API'
 import './Todo.css'
 
 import moment from 'moment'
+// import CountdownTime from 'react-awesome-countdowntimer'
 
 class Todo extends Component {
 	state = {
@@ -34,10 +35,10 @@ class Todo extends Component {
 
 				<TodoList todos={this.state.todos} loadTodos={this.loadTodos}/>
 
-
 			</div>
 		)
 	}
 }
 
 export default Todo
+				// <CountdownTime endDate={this.state.dueDate} />
