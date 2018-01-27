@@ -1,7 +1,6 @@
 'use strict'
 
 const { Strategy: LocalStrategy } = require ('passport-local')
-// const { Strategy: GoogleStrategy } = require ('passport-google-oauth20')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require ('mongoose')
 const keys = require('../config/keys')

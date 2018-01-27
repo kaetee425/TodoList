@@ -5,13 +5,13 @@ const passport = require('passport')
 const cookieSession = require('cookie-session');
 require('./models/Todo')
 require('./models/gAuth')
-require('./routes/authRoutes')
+require('./middleware/passport')(passport)
 // const is ES6 syntax
 
 const app = express();
 
-const MONGODB_URI = keys.mongoURI || 'mongodb://localhost/TodoList';
-// const MONGODB_URI = 'mongodb://localhost/TodoList';
+// const MONGODB_URI = keys.mongoURI || 'mongodb://localhost/TodoList';
+const MONGODB_URI = 'mongodb://localhost/TodoList';
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
@@ -29,10 +29,9 @@ app.use(
 );
 
 //auth routes
-require('./routes/authRoutes')(app, passport);
-require('./middleware/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
+require('./routes/authRoutes')(app);
 
 
 app.get('/', (req, res) => {

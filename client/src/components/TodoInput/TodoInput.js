@@ -2,20 +2,31 @@ import React, {Component} from 'react';
 import './TodoInput.css'
 import API from '../../utils/API';
 
+import moment from 'moment'
+import Timer from 'react-awesome-countdowntimer'
+import * as Datetime from 'react-datetime'
+import '../Timer/Timer.css'
+
 
 class TodoInput extends Component {
 	constructor (props) {
 		super(props);
 
-		this.state = { todos: [], text: "", dueDate: "" }
+		this.state = { todos: [], text: "", dueDate: moment() }
+		// dueDate: "" 
 
 		this.onInputChange = this.onInputChange.bind(this)
 		this.onDueDateChange = this.onDueDateChange.bind(this)
 	}
 
 	onDueDateChange = (event) => {
-		this.setState ({
-			dueDate: event.target.value
+		// this.setState ({
+		// 	dueDate: event.target.value
+		// })
+		console.log('moment date: ', event._d)
+
+		this.setState({
+			dueDate: event._d,
 		})
 	}
 
@@ -32,6 +43,7 @@ class TodoInput extends Component {
 		event.preventDefault();
 
 		if (this.state.text && this.state.dueDate) {
+			// console.log('form date: ', this.state.dueDate)
 			API.saveTasks({
 				task: this.state.text,
 				dueDate: this.state.dueDate
@@ -39,15 +51,19 @@ class TodoInput extends Component {
 			.then(res => this.props.potatoes())
 			.catch(err => console.log(err))
 		}
-		this.setState({ text: "", dueDate: ""})
+		this.setState({ text: "", dueDate: moment()})
 	}
 
 	render () {
 		return (
 			<form onSubmit={this.props.onFormSubmit}>
 				<input placeholder='add a todo task' value={this.state.text} onChange={this.onInputChange}/>
-				<input type="date" value={this.state.dueDate} onChange={this.onDueDateChange}/>
-				
+				<div className="datetime">
+					<Datetime value={this.state.dueDate} onChange={this.onDueDateChange} />
+				</div>	
+
+				<Timer endDate={this.state.dueDate} />
+
 				<button onClick={this.onFormSubmit}>Submit Your Shit</button>
 			</form>
 		);
@@ -55,3 +71,6 @@ class TodoInput extends Component {
 }
 
 export default TodoInput;
+
+				// <input type="date" value={this.state.dueDate} onChange={this.onDueDateChange}/>
+			

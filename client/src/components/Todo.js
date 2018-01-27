@@ -5,11 +5,13 @@ import Countdown from './Timer/Timer'
 import API from './../utils/API'
 import './Todo.css'
 
+import moment from 'moment'
+
 class Todo extends Component {
 	state = {
 		todos: [],
 		text: "",
-		dueDate: ""
+		dueDate: moment()
 	}
 
 	componentDidMount() {
@@ -27,8 +29,6 @@ class Todo extends Component {
 		return (
 			<div>
 				<h1>Do your Shit!</h1>
-
-				<Countdown  />
 				
 				<TodoInput potatoes={this.loadTodos}/>
 

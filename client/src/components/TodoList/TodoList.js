@@ -3,9 +3,13 @@ import TodoListItems from './TodoListItems'
 import API from '../../utils/API';
 import DeleteBtn from '../DeleteBtn/DeleteBtn'
 
+import moment from 'moment'
+import Timer from 'react-awesome-countdowntimer'
+
 class TodoList extends Component { 
 	state = {
-		completeClicked: false
+		completeClicked: false,
+		dueDate: moment()
 	}
 
 	//delete? edit?
@@ -24,15 +28,17 @@ class TodoList extends Component {
 			.catch(err => console.error(err))
 	}
 
+							// <Timer endDate={this.state.dueDate._d} />
 	render() {
 		console.log(this.state.completeClicked)
+		console.log('dueDate: ', this.state.dueDate._d)
 		return (
 			<div>
 				{this.props.todos.map( task => {
 					return (
 						<TodoListItems key={task._id}>
 							<h3>Task: {task.task}</h3>
-							<h3>Due: {task.dueDate}</h3>
+							<h3>Due: {task.dueDate} </h3>
 
 						<button onClick={() => this.deleteTask(task._id)}> Delete </button>
 						<button 

@@ -13,4 +13,5 @@ input {
 	padding: 0 15px;
 	border: 2px solid black;
 	border-radius: 50px;
+	display: inline-block;
 }
