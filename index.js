@@ -1,12 +1,10 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-const devKeys = require('./config/dev');
 const passport = require('passport')
 const cookieSession = require('cookie-session');
 require('./models/Todo')
 require('./models/gAuth')
-require('./middleware/passport')
 require('./routes/authRoutes')
 // const is ES6 syntax
 
@@ -25,15 +23,17 @@ app.use(
 	cookieSession({
 		maxAge: 30 * 24 * 60 * 60 * 1000,
 		//30 days turned in milliseconds
-		keys: [devKeys.cookieKey]
+		keys: [keys.cookieKey]
 		//encrypt cookies
 	})
 );
+
+//auth routes
+require('./routes/authRoutes')(app, passport);
+require('./middleware/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
 
-//auth routes
-require('./routes/authRoutes')(app);
 
 app.get('/', (req, res) => {
 	res.send({message: 'hello you'});
