@@ -1,8 +1,15 @@
 'use strict'
 
 const { Strategy: LocalStrategy } = require ('passport-local')
-const db = require ('../models')
+// const { Strategy: GoogleStrategy } = require ('passport-google-oauth20')
+const GoogleStrategy = require('passport-google-oauth20').Strategy
+const mongoose = require ('mongoose')
+const keys = require('../config/dev')
+const authRoutes = require('../routes/authRoutes')
 
+const User = mongoose.model('users');
+
+	
 module.exports = function(passport){
 	passport.use(new LocalStrategy (
 		{
@@ -26,14 +33,37 @@ module.exports = function(passport){
 		}
 	))
 
-	passport.serializeUser (({ id }, cb) => {
-		cb(null, { id })
-	})
+	passport.use(
+		new GoogleStrategy({
+			clientID:keys.googleClientID,
+			clientSecret:keys.googleClientSecret,
+			callbackURL: '/auth/google/callback'
+		}, 
+			(accessToken, refreshToken, profile, done) => {
+				User.findOne({ googleId: profile.id })
+					.then((existingUser) => {
+						if (existingUser) {
+							done(null, existingUser)
+						} else {
+							new User({ googleId: profile.id })
+								.save()
+								.then(user => done(null, user))
+						}
+					})
 
-	passport.deserializeUser(({ id }, cb) => {
-		db.User.findOne ({ where: { id }, attributes: ['username', 'id'] })
-			.then( user => {
-				cb(null, user)
+			}
+		)
+	);
+
+	passport.serializeUser ((user, done) => {
+		done(null, user.id)
+	});
+
+	passport.deserializeUser((id, done) => {
+		User.findById(id)
+			.then(user => {
+				done(null, user)
 			})
-	})
+	});
 }
+

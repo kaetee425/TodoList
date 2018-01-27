@@ -28,7 +28,7 @@ class Todo extends Component {
 			<div>
 				<h1>Do your Shit!</h1>
 
-				<Countdown />
+				<Countdown  />
 				
 				<TodoInput potatoes={this.loadTodos}/>
 

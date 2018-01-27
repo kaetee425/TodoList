@@ -1,7 +1,13 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-require('./models/Todo.js')
+const devKeys = require('./config/dev');
+const passport = require('passport')
+const cookieSession = require('cookie-session');
+require('./models/Todo')
+require('./models/gAuth')
+require('./middleware/passport')
+require('./routes/authRoutes')
 // const is ES6 syntax
 
 const app = express();
@@ -14,10 +20,26 @@ mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
+//passport stuff
+app.use(
+	cookieSession({
+		maxAge: 30 * 24 * 60 * 60 * 1000,
+		//30 days turned in milliseconds
+		keys: [devKeys.cookieKey]
+		//encrypt cookies
+	})
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+//auth routes
+require('./routes/authRoutes')(app);
+
 app.get('/', (req, res) => {
 	res.send({message: 'hello you'});
 });
 
+//task routes
 require('./routes/todoRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {

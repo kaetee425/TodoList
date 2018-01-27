@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import moment from 'moment'
 import Timer from 'react-awesome-countdowntimer'
+// import TimeBlocks from './TimeBlocks'
 import * as Datetime from 'react-datetime'
 import './Timer.css'
 
@@ -33,3 +34,4 @@ class Countdown extends Component {
 }
 
 export default Countdown
+// <TimeBlocks endDate={this.onChangeDatetime()} />
