@@ -10,27 +10,27 @@ const User = mongoose.model('users');
 
 	
 module.exports = function(passport){
-	passport.use(new LocalStrategy (
-		{
-			usernameField: 'username'
-		},
-		async function(username, password, done) {
-			const dbUser = await db.User.findOne({where: { username }})
+	// passport.use(new LocalStrategy (
+	// 	{
+	// 		usernameField: 'username'
+	// 	},
+	// 	async function(username, password, done) {
+	// 		const dbUser = await db.User.findOne({where: { username }})
 
-			if (!dbUser) {
-				return done(null, false, {
-					message: "Incorrect username."
-				})
-			}
+	// 		if (!dbUser) {
+	// 			return done(null, false, {
+	// 				message: "Incorrect username."
+	// 			})
+	// 		}
 
-			else if ( !dbUser.validPassword(passowrd) ) {
-				return done(null, false, {
-					message: "Incorrect passowrd."
-				})
-			}
-			return done(null, dbUser)
-		}
-	))
+	// 		else if ( !dbUser.validPassword(passowrd) ) {
+	// 			return done(null, false, {
+	// 				message: "Incorrect passowrd."
+	// 			})
+	// 		}
+	// 		return done(null, dbUser)
+	// 	}
+	// ))
 
 	passport.use(
 		new GoogleStrategy({

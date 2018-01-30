@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import TodoInput from './TodoInput/TodoInput'
 import TodoList from './TodoList/TodoList'
-// import Countdown from './Timer/Timer'
+import Nav from './Nav/Nav'
 import API from './../utils/API'
 import './Todo.css'
 
-import moment from 'moment'
-// import CountdownTime from 'react-awesome-countdowntimer'
 
 class Todo extends Component {
 	state = {
 		todos: [],
 		text: "",
-		dueDate: moment()
+		dueDate: ""
 	}
 
 	componentDidMount() {
@@ -20,17 +18,18 @@ class Todo extends Component {
 	}
 
 	loadTodos = () => {
-		console.log('im getting called')
 		API.getTasks()
 			.then(res => this.setState({ todos: res.data }))
-			.catch(err => console.error(err))
+			.catch(err => console.error(err));
 	}
 	
 	render() {
 		return (
 			<div>
+				<Nav />
+
 				<h1>Do your Shit!</h1>
-				
+
 				<TodoInput potatoes={this.loadTodos}/>
 
 				<TodoList todos={this.state.todos} loadTodos={this.loadTodos}/>

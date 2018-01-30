@@ -2,32 +2,42 @@ import React, {Component} from 'react';
 import './TodoInput.css'
 import API from '../../utils/API';
 
-import moment from 'moment'
-import CountdownTime from 'react-awesome-countdowntimer'
-import * as Datetime from 'react-datetime'
-import '../Timer/Timer.css'
+// import moment from 'moment'
+// import CountdownTime from 'react-awesome-countdowntimer'
+// import * as Datetime from 'react-datetime'
+// import '../Timer/Timer.css'
 
 
 class TodoInput extends Component {
 	constructor (props) {
 		super(props);
 
-		this.state = { todos: [], text: "", dueDate: moment() }
-		// dueDate: "" 
+		this.state = { todos: [], text: "", dueDate: ""}
+		// dueDate: moment()
 
 		this.onInputChange = this.onInputChange.bind(this)
 		this.onDueDateChange = this.onDueDateChange.bind(this)
 	}
 
 	onDueDateChange = (event) => {
-		// this.setState ({
-		// 	dueDate: event.target.value
-		// })
-		console.log('moment date: ', event._d)
+		// if (event.target.value != "") {
+				console.log("event:", event.target.value)
+			var deadline = new Date(event.target.value);
+				console.log('deadline: ', deadline)
+			var myTime = deadline.toString();
+				console.log('myTime: ', myTime)
 
-		this.setState({
-			dueDate: event._d,
-		})
+			this.setState ({
+				dueDate: myTime
+			})
+			
+		// } 
+		// else {
+		// 	console.error("errrooorrrr")
+		// } 
+		//if date is empty string, do not run it 
+		// duedate is saving as undefined when i use myTime ..
+		// why???
 	}
 
 	onInputChange = (event) => {
@@ -48,23 +58,31 @@ class TodoInput extends Component {
 				task: this.state.text,
 				dueDate: this.state.dueDate
 			})
-			.then(res => this.props.potatoes())
+			.then(res => {
+				this.setState({ text: "", dueDate: ""})
+				this.props.potatoes()
+			})
 			.catch(err => console.log(err))
 		}
-		this.setState({ text: "", dueDate: moment()})
 	}
 
 	render () {
 		return (
 			<form onSubmit={this.props.onFormSubmit}>
-				<input placeholder='add a todo task' value={this.state.text} onChange={this.onInputChange}/>
-				<div className="datetime">
-					<Datetime value={this.state.dueDate} onChange={this.onDueDateChange} />
-				</div>	
-
-				<CountdownTime endDate={this.state.dueDate} />
-
+				<input 
+					placeholder='add a todo task' 
+					value={this.state.text} 
+					onChange={this.onInputChange}
+				/>
+				<input 
+					type="date" 
+					placeholder='pick a due date' 
+					value={this.state.dueDate} 
+					onChange={this.onDueDateChange}
+				/>
+				<br />
 				<button onClick={this.onFormSubmit}>Submit Your Shit</button>
+				
 			</form>
 		);
 	}
@@ -72,5 +90,3 @@ class TodoInput extends Component {
 
 export default TodoInput;
 
-				// <input type="date" value={this.state.dueDate} onChange={this.onDueDateChange}/>
-			
