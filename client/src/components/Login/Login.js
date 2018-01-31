@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Login.css'
 
 class Login extends Component {
 	// constructor(props){
@@ -33,15 +34,17 @@ class Login extends Component {
 
 	render() {
 		return (
-			<form>
-				<h1>Welcome to the Kat Tasks!</h1>
-				<div>
+			<div className="login">
+				<h1>Welcome to the Purrrfect List!</h1>
+
+				<div className="auth">
 					<h3>Login in with Google!</h3>
-					<button>
+
+					<button className="authLog">
 						<a href='/auth/google'>Login</a>
 					</button>
 				</div>
-			</form>
+			</div>
 		)
 	}
 }

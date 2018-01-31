@@ -1,0 +1,21 @@
+nav {
+	width: 100%;
+	background-color: black;
+}
+
+button {
+	font-size: 24px;
+	display: inline-block;
+	border: 1px red solid;
+	padding: 5px 25px;
+	border-radius: 50px;
+}
+
+.oauth {
+	float: right;
+}
+
+.btn-primary-spacing {
+	margin-right: 10px;
+	margin-bottom: 5px !important;
+}

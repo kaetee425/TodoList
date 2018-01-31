@@ -1,17 +1,23 @@
 form {
 	background-color: lightblue;
-	padding: 25px 0;
+	padding: 50px 0;
 	text-align: center;
 }
 
 input {
 	height: 50px;
 	width: 400px;
-	font-size: 20px;
+	font-size: 25px;
 	text-align: center;
 	margin: 0 15px;
 	padding: 0 15px;
 	border: 2px solid black;
 	border-radius: 50px;
 	display: inline-block;
+}
+
+.submitBtn {
+	margin-top: 20px;
+	font-size: 20px;
+	margin-top: 30px;
 }

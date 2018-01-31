@@ -20,24 +20,10 @@ class TodoInput extends Component {
 	}
 
 	onDueDateChange = (event) => {
-		// if (event.target.value != "") {
-				console.log("event:", event.target.value)
-			var deadline = new Date(event.target.value);
-				console.log('deadline: ', deadline)
-			var myTime = deadline.toString();
-				console.log('myTime: ', myTime)
 
-			this.setState ({
-				dueDate: myTime
-			})
-			
-		// } 
-		// else {
-		// 	console.error("errrooorrrr")
-		// } 
-		//if date is empty string, do not run it 
-		// duedate is saving as undefined when i use myTime ..
-		// why???
+		this.setState ({
+			dueDate: event.target.value
+		})
 	}
 
 	onInputChange = (event) => {
@@ -65,6 +51,7 @@ class TodoInput extends Component {
 			.catch(err => console.log(err))
 		}
 	}
+	
 
 	render () {
 		return (
@@ -74,6 +61,7 @@ class TodoInput extends Component {
 					value={this.state.text} 
 					onChange={this.onInputChange}
 				/>
+
 				<input 
 					type="date" 
 					placeholder='pick a due date' 
@@ -81,7 +69,7 @@ class TodoInput extends Component {
 					onChange={this.onDueDateChange}
 				/>
 				<br />
-				<button onClick={this.onFormSubmit}>Submit Your Shit</button>
+				<button class="submitBtn" onClick={this.onFormSubmit}>Submit Your Shit</button>
 				
 			</form>
 		);

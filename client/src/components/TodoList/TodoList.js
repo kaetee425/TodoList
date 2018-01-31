@@ -3,6 +3,7 @@ import TodoListItems from './TodoListItems'
 import API from '../../utils/API';
 import DeleteBtn from '../DeleteBtn/DeleteBtn'
 import Clock from '../Clock/Clock'
+import './TodoList.css'
 
 // import moment from 'moment'
 // import CountdownTime from 'react-awesome-countdowntimer'
@@ -13,7 +14,15 @@ class TodoList extends Component {
 		completeClicked: false,
 	}
 
+	secondTime(potato) {
+	  const newDate = Date.parse(potato)
+	  return newDate
+	}
 
+	prettyTime(chickens) {
+		const prettyTime = new Date(chickens).toString()
+		return prettyTime
+	}
 
 	//delete? edit?
 	deleteTask = (id) => {
@@ -30,21 +39,22 @@ class TodoList extends Component {
 			.then(res => this.props.loadTodos())
 			.catch(err => console.error(err))
 	}
-							// <Clock dueDate={task.dueDate}/> 
 
 	render() {
 		console.log(this.state.completeClicked)
 		return (
-			<div>
+			<div className="taskList">
 				{this.props.todos.map( task => {
 					return (
 						<TodoListItems key={task._id}>
-							<h3>Task: {task.task}</h3>
-							<h3>Due: {task.dueDate} </h3>	
+							<h3 id="taskdata">Task: {task.task}</h3>
+							<h3 id="duedate">Due: {this.prettyTime(task.dueDate)} </h3>	
 
+							<Clock dueDate={this.secondTime(task.dueDate)}/> 
 						
-							<button onClick={() => this.deleteTask(task._id)}> Delete </button>
+							<button id="deleteBtn" onClick={() => this.deleteTask(task._id)}> Delete </button>
 							<button 
+							id="doneBtn"
 							onClick={
 								() => {
 									{this.state.completeClicked? this.setState({completeClicked: false}) : this.setState({completeClicked: true})}
@@ -55,7 +65,7 @@ class TodoList extends Component {
 								> 
 								Done!!! 
 							</button>
-						
+							<hr />
 						</TodoListItems>
 					)
 				})}

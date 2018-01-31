@@ -28,7 +28,7 @@ class Todo extends Component {
 			<div>
 				<Nav />
 
-				<h1>Do your Shit!</h1>
+				<h1>Purrrfect Duty</h1>
 
 				<TodoInput potatoes={this.loadTodos}/>
 

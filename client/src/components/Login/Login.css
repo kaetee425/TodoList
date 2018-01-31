@@ -1,0 +1,21 @@
+.login {
+	text-align: center;
+	margin: auto;
+	vertical-align: middle;
+	margin-top: 25%;
+	/*transform: translate(0, 75%)*/
+}
+
+h1 {
+	padding-bottom: 30px ;
+}
+
+h3 {
+	padding-bottom: 45px
+}
+
+.authLog {
+	font-size: 20px;
+	padding: 10px 55px;
+	border-radius: 50px;
+}

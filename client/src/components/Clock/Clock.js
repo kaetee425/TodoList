@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Clock.css'
 
 class Clock extends Component {
 	constructor(props) {
@@ -40,10 +41,12 @@ class Clock extends Component {
 
 		return (
 				<div className="time">
-					<h2>Days: {days}</h2>
-					<h2>Hours: {hours}</h2>
-					<h2>Minutes: {minutes}</h2>
-					<h2>Seconds: {seconds}</h2>
+					<ul className="timer">
+						<li><span id='days'>{days}</span>Days</li>
+						<li><span id='hours'>{hours}</span>Hours</li>
+						<li><span id='minutes'>{minutes}</span>Minutes</li>
+						<li><span id='seconds'>{seconds}</span>Seconds</li>
+					</ul>
 				</div>
 			)
 	}
@@ -51,7 +54,6 @@ class Clock extends Component {
 	render(){
 		return (
 			<div>
-				<h1>Clock</h1>
 				{this.getDiff()}
 			</div>
 		);

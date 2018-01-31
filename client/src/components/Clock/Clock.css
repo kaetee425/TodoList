@@ -1,0 +1,28 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.time {
+	/*color: #ffd54f;*/
+	text-align: center;
+	width: 100%;
+}
+
+.timer ul {
+	margin-top: -35px;
+}
+
+.timer li {
+	display: inline-block;
+	font-size: 1.5em;
+	list-style-type: none;
+	padding: 1em;
+	text-transform: uppercase;
+}
+
+.timer li span {
+	display: block;
+	font-size: 50px;
+}
