@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Login.css'
+import Cat from '../Cat/Cat'
 
 class Login extends Component {
 	// constructor(props){
@@ -34,16 +35,16 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div className="login">
-				<h1>Welcome to the Purrrfect List!</h1>
+			<div className="jumbotron">
+				<h1>Welcome to the Purrrfect List</h1>
 
 				<div className="auth">
-					<h3>Login in with Google!</h3>
-
 					<button className="authLog">
-						<a href='/auth/google'>Login</a>
+						<a href='/auth/google'>Login with Google</a>
 					</button>
 				</div>
+				
+				<Cat />
 			</div>
 		)
 	}

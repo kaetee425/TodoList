@@ -11,13 +11,13 @@ input {
 	text-align: center;
 	margin: 0 15px;
 	padding: 0 15px;
-	border: 2px solid black;
+	border: 2px solid red;
 	border-radius: 50px;
 	display: inline-block;
 }
 
 .submitBtn {
 	margin-top: 20px;
-	font-size: 20px;
+	font-size: 23px;
 	margin-top: 30px;
 }

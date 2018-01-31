@@ -4,10 +4,10 @@ nav {
 }
 
 button {
-	font-size: 24px;
+	font-size: 28px;
 	display: inline-block;
 	border: 1px red solid;
-	padding: 5px 25px;
+	padding: 10px 45px;
 	border-radius: 50px;
 }
 

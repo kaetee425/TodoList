@@ -1,0 +1,28 @@
+.tuna {
+  animation: 
+    walk-cycle 1s steps(12) 2,
+    walk-to-run .75s steps(12) 2s 1, 
+    run-cycle .75s steps(13) 2.75s infinite;
+  background: url(http://stash.rachelnabors.com/24ways2012/cat_sprite.png) 0 0 no-repeat; 
+  height: 200px;
+  width: 400px;
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  margin-left: -200px;
+}
+
+@keyframes walk-cycle {  
+  0% {background-position: 0 0; } 
+  100% {background-position: 0 -2391px; } 
+}
+
+@keyframes walk-to-run {  
+  0% {background-position: -400px 0; } 
+  100% {background-position: -400px -2391px; } 
+}
+
+@keyframes run-cycle {  
+  0% {background-position: -800px 0; }
+  100% {background-position: -800px -2591px; } 
+}
