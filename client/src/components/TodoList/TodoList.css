@@ -1,23 +1,25 @@
 .taskList {
-	margin: 50px;	
+	margin: 30px;	
 }
 
 #taskdata, #duedate {
 	padding: 10px auto;
-	margin: 25px auto;
+	margin: 14px auto;
+	margin-bottom: 5px;
 	padding-bottom: 10px;
-	font-size: 1.8em;
+	font-size: 1.3em;
 }
 
 #deleteBtn, #doneBtn {
-	padding: 5px 150px;
+	padding: 5px 100px;
 	margin: 10px;
+	color: #4386f2;
 }
 
 hr {
 	height: 6px;
 	background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;
     border: 0;
-    margin: 10px 25%;
+    margin: 10px 35%;
     color: red;
 }

@@ -69,7 +69,7 @@ class TodoInput extends Component {
 					onChange={this.onDueDateChange}
 				/>
 				<br />
-				<button class="submitBtn" onClick={this.onFormSubmit}>Submit Your Shit</button>
+				<button className="submitBtn" onClick={this.onFormSubmit}>Submit Your Shit</button>
 				
 			</form>
 		);

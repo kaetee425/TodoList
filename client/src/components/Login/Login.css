@@ -1,18 +1,19 @@
 .jumbotron {
 	text-align: center;
-	margin: 25em auto;
+	margin: 8em auto;
 	vertical-align: middle;
 	background-color: white;
 }
 
 h1 {
-	padding-bottom: 50px ;
+	padding-bottom: 50px;
+	font-size: 30px;
 }
 
 .authLog {
-	font-size: 20px;
-	padding: 18px 80px;
+	font-size: 18px;
+	padding: 14px 60px;
 	border-radius: 50px;
-	font-size: 33px;
+	font-size: 26px;
 	margin-top: 50px;
 }

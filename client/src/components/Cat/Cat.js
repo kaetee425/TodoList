@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Cat.css'
 
-const Cat = (props) => {
-	return(
-		<div className="tuna">
+//change to smart component 
+//add catClicked state via props
 
-		</div>
+const Cat = (props) => {
+	return (
+		<div className="tuna"></div>
 	)
 }
+
+// class Cat extends Component {
+// 	constructor() {
+// 		this.state = {
+// 			catclicked: false
+// 		}
+// 	}
+
+
+// 	render() {
+// 		return (
+// 			<div>
+// 			</div>
+// 			)
+// 	}
+// }
+
+
 
 export default Cat

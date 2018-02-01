@@ -4,14 +4,23 @@ import API from '../../utils/API';
 import DeleteBtn from '../DeleteBtn/DeleteBtn'
 import Clock from '../Clock/Clock'
 import './TodoList.css'
+import Cat from '../Cat/Cat'
 
 // import moment from 'moment'
 // import CountdownTime from 'react-awesome-countdowntimer'
 // import * as Datetime from 'react-datetime'
 
 class TodoList extends Component { 
-	state = {
-		completeClicked: false,
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			completeClicked: false,
+			catclicked: false
+		}
+
+		this.handleAddCat = this.handleAddCat.bind(this);
+		this.comboFunct = this.comboFunct.bind(this);
 	}
 
 	secondTime(potato) {
@@ -40,36 +49,54 @@ class TodoList extends Component {
 			.catch(err => console.error(err))
 	}
 
+	handleAddCat () {
+		console.log("clicked!!")
+		this.setState({
+			catclicked: true
+		})
+	}
+
+	comboFunct(task) {
+		{this.state.completeClicked? this.setState({completeClicked: false}) : this.setState({completeClicked: true})}
+		this.editTask(task._id, task.complete)
+
+		this.handleAddCat();
+	}
+
 	render() {
 		console.log(this.state.completeClicked)
 		return (
-			<div className="taskList">
-				{this.props.todos.map( task => {
-					return (
-						<TodoListItems key={task._id}>
-							<h3 id="taskdata">Task: {task.task}</h3>
-							<h3 id="duedate">Due: {this.prettyTime(task.dueDate)} </h3>	
+		<div className="container">
+			<div className="row">
+				<div className="taskList col-md 6">
+					{this.props.todos.map( task => {
+						return (
+							<TodoListItems key={task._id}>
+								<h3 id="taskdata">Task: {task.task}</h3>
+								<h3 id="duedate">Due: {this.prettyTime(task.dueDate)} </h3>	
 
-							<Clock dueDate={this.secondTime(task.dueDate)}/> 
-						
-							<button id="deleteBtn" onClick={() => this.deleteTask(task._id)}> Delete </button>
-							<button 
-							id="doneBtn"
-							onClick={
-								() => {
-									{this.state.completeClicked? this.setState({completeClicked: false}) : this.setState({completeClicked: true})}
-									this.editTask(task._id, task.complete)
-								}
-							}
-
+								<Clock dueDate={this.secondTime(task.dueDate)}/> 
+								
+								<button id="deleteBtn" onClick={() => this.deleteTask(task._id)}> Delete </button>
+								<button 
+									id="doneBtn"
+									onClick={() => {this.comboFunct(task)}}
 								> 
-								Done!!! 
-							</button>
-							<hr />
-						</TodoListItems>
-					)
-				})}
+									Done!!! 
+								</button>
+								<hr />
+							</TodoListItems>
+						)
+					})}
+				</div>
+
+				<div className="litterBox col-md 6"> 
+					<h1>Litter Box</h1>
+					{this.state.catclicked? <Cat /> : <div></div>}
+				</div>
+
 			</div>
+		</div>
 		)
 	}
 }

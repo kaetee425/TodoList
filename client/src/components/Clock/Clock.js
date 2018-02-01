@@ -25,10 +25,10 @@ class Clock extends Component {
 
 	getDiff() {
 
-		console.log('startDate: ', this.state.startDate);
+		// console.log('startDate: ', this.state.startDate);
 		let diff = this.state.endDate - this.state.startDate
 		diff = new Date(diff);
-		console.log('different: ', diff )
+		// console.log('different: ', diff )
 
 
 		let seconds = Math.floor(diff / 1000)
