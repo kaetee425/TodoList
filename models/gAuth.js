@@ -6,7 +6,8 @@ const { Schema } = mongoose;
 const gAuthSchema = new Schema({
   googleId: String,
   name: String,
-
+  alive: {type: Number, default: 0},
+  dead: {type: Number, default: 0}
 });
 
 mongoose.model( 'users', gAuthSchema );

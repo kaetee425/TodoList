@@ -8,6 +8,10 @@ require('./models/gAuth')
 require('./middleware/passport')(passport)
 // const is ES6 syntax
 
+//twilio
+const http = require('http');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+
 const app = express();
 
 // const MONGODB_URI = keys.mongoURI || 'mongodb://localhost/TodoList';
@@ -16,6 +20,16 @@ const MONGODB_URI = 'mongodb://localhost/TodoList';
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
   useMongoClient: true
+});
+
+//twilio
+app.post('/sms', (req, res) => {
+	const twiml = new MessagingResponse();
+
+	twiml.message("Make sure you finish your tasks or you will kill a kitty!");
+
+	res.writeHead(200, {'Content-Type': 'text/xml'});
+	res.end(twiml.toString());
 });
 
 //passport stuff

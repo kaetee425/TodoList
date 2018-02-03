@@ -4,6 +4,7 @@ import TodoList from './TodoList/TodoList'
 import Nav from './Nav/Nav'
 import API from './../utils/API'
 import './Todo.css'
+// import userAPI from '../utils/userAPI'
 
 
 class Todo extends Component {
@@ -15,7 +16,17 @@ class Todo extends Component {
 
 	componentDidMount() {
 		this.loadTodos();
+		// this.getUserData();
 	}
+
+	// getUserData = (id) => {
+	// 	userAPI.getScore()
+	// 		.then( res => this.setState({
+	// 			alive: res.data.alive,
+	// 			dead: res.data.dead
+	// 		}))
+	// 		.catch(err => console.error(err));
+	// }
 
 	loadTodos = () => {
 		API.getTasks()
