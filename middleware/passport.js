@@ -46,6 +46,7 @@ module.exports = function(passport){
 
 				User.findOne({ googleId: profile.id })
 					.then((existingUser) => {
+						console.log("existing person:", existingUser)
 						if (existingUser) {
 							done(null, existingUser)
 						} else {
