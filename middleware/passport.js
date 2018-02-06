@@ -72,10 +72,7 @@ module.exports = function(passport){
 
 	  } else {
 	    const user = await new User({
-	      googleID: profile.id,
-	      name: profile.displayName,
-	      email: profile.emails[0].value,
-	      avatar: profile.photos[0].value,
+	      googleID: profile.id
 	    }).save()
 	    done(null, user)
 	  }
