@@ -66,14 +66,22 @@ module.exports = function(passport){
 	  callbackURL: '/auth/google/callback',
 	  proxy: true
 	}, async(accessToken, refreshToken, profile, done) => {
+		console.log("accessToken: ", accessToken);
+		console.log("refreshToken: ", refreshToken);
+		console.log("profile: ", profile);
+
+
 	  const existingUser = await User.findOne({googleID: profile.id})
 	  if (existingUser) {
+	  	console.log("existing person:", existingUser)
 	    done(null, existingUser);
 
 	  } else {
+	  	console.log("creating a new person:");
 	    const user = await new User({
 	      googleID: profile.id
 	    }).save()
+	    console.log('it should have saved')
 	    done(null, user)
 	  }
 	}))
