@@ -70,20 +70,25 @@ module.exports = function(passport){
 		console.log("refreshToken: ", refreshToken);
 		console.log("profile: ", profile);
 
+		try {
+			const existingUser = await User.findOne({googleID: profile.id})
+			  console.log("runnnnnnnnnnnnnnn")
+			  if (existingUser) {
+			  	console.log("existing person:", existingUser)
+			    done(null, existingUser);
 
-	  const existingUser = await User.findOne({googleID: profile.id})
-	  if (existingUser) {
-	  	console.log("existing person:", existingUser)
-	    done(null, existingUser);
+			  } else {
+			  	console.log("creating a new person:");
+			    const user = await new User({
+			      googleID: profile.id
+			    }).save()
+			    console.log('it should have saved')
+			    done(null, user)
+			  }
+			} catch (err) {
+				console.error ("google error", err)
+			}
 
-	  } else {
-	  	console.log("creating a new person:");
-	    const user = await new User({
-	      googleID: profile.id
-	    }).save()
-	    console.log('it should have saved')
-	    done(null, user)
-	  }
 	}))
 
 	passport.serializeUser ((user, done) => {
