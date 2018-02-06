@@ -40,6 +40,10 @@ module.exports = function(passport){
 			proxy: true
 		}, 
 			(accessToken, refreshToken, profile, done) => {
+				console.log("accessToken: ", accessToken)
+				console.log("refreshToken: ", refreshToken)
+				console.log("profile: ", profile)
+
 				User.findOne({ googleId: profile.id })
 					.then((existingUser) => {
 						if (existingUser) {
@@ -49,7 +53,7 @@ module.exports = function(passport){
 								.save()
 								.then(user => done(null, user))
 						}
-					})
+					}).catch(err => console.error("error in google", err))
 
 			}
 		)
