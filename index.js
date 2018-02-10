@@ -11,7 +11,7 @@ require('./middleware/passport')(passport)
 //twilio
 const http = require('http');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
-// const sessions = require('express-session')
+const sessions = require('express-session')
 
 const app = express();
 
