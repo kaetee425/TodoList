@@ -15,8 +15,8 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 const app = express();
 
-// const MONGODB_URI = keys.mongoURI || 'mongodb://localhost/TodoList';
-const MONGODB_URI = 'mongodb://localhost/TodoList';
+const MONGODB_URI = keys.mongoURI || 'mongodb://localhost/TodoList';
+// const MONGODB_URI = 'mongodb://localhost/TodoList';
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
@@ -24,23 +24,23 @@ mongoose.connect(MONGODB_URI, {
 });
 
 //twilio
-// app.use(sessions({secret: 'twilio-secret' }));
+app.use(sessions({secret: 'twilio-secret' }));
 
-// app.post('/sms', (req, res) => {
-// 	// const smsCount = req.session.counter || 0
+app.post('/sms', (req, res) => {
+	// const smsCount = req.session.counter || 0
 
-// 	const twiml = new MessagingResponse();
+	const twiml = new MessagingResponse();
 
-// 	twiml.message("Make sure you finish your tasks or you will kill a kitty!");
-// 	// if (smsCount > 1) {
-// 	// 	twiml.message("Add some tasks, save some kitties, and get stuff done!")
-// 	// } 
+	twiml.message("Make sure you finish your tasks or you will kill a kitty!");
+	// if (smsCount > 1) {
+	// 	twiml.message("Add some tasks, save some kitties, and get stuff done!")
+	// } 
 
-// 	// req.session.counter = smsCount + 1
+	// req.session.counter = smsCount + 1
 
-// 	res.writeHead(200, {'Content-Type': 'text/xml'});
-// 	res.end(twiml.toString());
-// });
+	res.writeHead(200, {'Content-Type': 'text/xml'});
+	res.end(twiml.toString());
+});
 
 //passport stuff
 app.use(
